@@ -2,25 +2,8 @@ import streamlit as st
 import cv2
 import numpy as np
 import streamlit as st
-import setuptools
-
-setuptools.setup(
-    name="streamlit-webcam-example",
-    version="0.1.0",
-    author="Tim Conkling",
-    author_email="tim@streamlit.io",
-    description="",
-    long_description="",
-    long_description_content_type="text/plain",
-    url="",
-    packages=setuptools.find_packages(),
-    include_package_data=True,
-    classifiers=[],
-    python_requires=">=3.7",
-    install_requires=[
-        "streamlit >= 0.73",
-    ],
-)
+from streamlit_webrtc import webrtc_streamer
+import av
 
 # Load the cascade for hand gesture recognition
 hand_cascade = cv2.CascadeClassifier('hand.xml')
@@ -30,16 +13,26 @@ choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
 
-cap = cv2.VideoCapture(0)
-
-
+#cap = cv2.VideoCapture(0)
 
 while True:
+    class VideoProcessor:
+    def __init__(self) -> None:
+        self.threshold1 = 100
+        self.threshold2 = 200
+
+    def recv(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+
+        img = cv2.cvtColor(cv2.Canny(img, self.threshold1, self.threshold2), cv2.COLOR_GRAY2BGR)
+
+        return av.VideoFrame.from_ndarray(img, format="bgr24")
+
     # Read a frame from the webcam
-    _, frame = cap.read()
+    #_, frame = cap.read()
 
     # Convert the frame to grayscale
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect hands in the frame
     hands = hand_cascade.detectMultiScale(gray, 1.1, 5)
