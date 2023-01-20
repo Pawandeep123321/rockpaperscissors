@@ -2,6 +2,9 @@ import streamlit as st
 import cv2
 import numpy as np
 import streamlit as st
+from streamlit_webrtc import webrtc_streamer
+
+webrtc_streamer(key="sample")
 
 
 
@@ -13,9 +16,9 @@ choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
 
-st.title("Webcam Live Feed")
-run = st.checkbox('Run')
-FRAME_WINDOW = st.image([])
+#st.title("Webcam Live Feed")
+#run = st.checkbox('Run')
+#FRAME_WINDOW = st.image([])
 cap = cv2.VideoCapture(0)
 
 
@@ -25,8 +28,8 @@ while True:
     _, frame = cap.read()
 
     # Convert the frame to grayscale
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    FRAME_WINDOW.image(frame)
+ #   frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+  #  FRAME_WINDOW.image(frame)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect hands in the frame
