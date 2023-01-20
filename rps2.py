@@ -35,7 +35,7 @@ while True:
     #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect hands in the frame
-    hands = hand_cascade.detectMultiScale(gray, 1.1, 5)
+    hands = hand_cascade.detectMultiScale(img, 1.1, 5)
 
     # Draw a rectangle around the hand
     for (x, y, w, h) in hands:
