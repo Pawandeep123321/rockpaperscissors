@@ -1,40 +1,40 @@
 import streamlit as st
 import cv2
 
-st.set_page_config(page_title="Rock-Paper-Scissors Game", page_icon=":guardsman:", layout="wide")
+# Function to capture webcam image
+def capture_webcam():
+    # Open webcam
+    webcam = cv2.VideoCapture(0)
 
-def rock_paper_scissors():
-    # Open the webcam
-    cap = cv2.VideoCapture(0)
+    # Get webcam image
+    _, frame = webcam.read()
 
-    # Create a dictionary of possible hand gestures
-    choices = { 0: "Rock", 1: "Paper", 2: "Scissors" }
+    # Close webcam
+    webcam.release()
 
-    # Create a dictionary of the winning hand gestures
-    rules = { "Rock": "Scissors", "Paper": "Rock", "Scissors": "Paper" }
+    # Return image
+    return frame
 
-    while True:
-        _, frame = cap.read()
+# Main function
+def main():
+    st.title("Rock Paper Scissors Game")
 
-        # Show the webcam feed on the Streamlit app
-        st.image(frame, caption="Webcam Feed", use_column_width=True)
+    # Capture webcam image
+    frame = capture_webcam()
 
-        # Get the user's choice
-        choice = st.selectbox("Make your choice:", list(choices.values()))
+    # Show webcam image
+    st.image(frame)
 
-        # Get the computer's choice
-        computer_choice = choices[cv2.getNumberOfCPUs() % 3]
+    # Get user input for move
+    move = st.selectbox("Select your move:", ["Rock", "Paper", "Scissors"])
 
-        # Display the results
-        if choice == computer_choice:
-            st.write("It's a tie!")
-        elif rules[choice] == computer_choice:
-            st.write("You win!")
-        else:
-            st.write("You lose!")
+    # Play game
+    if move == "Rock":
+        st.write("You selected Rock.")
+    elif move == "Paper":
+        st.write("You selected Paper.")
+    else:
+        st.write("You selected Scissors.")
 
-        # Add a button to start the game again
-        if st.button("Play Again?"):
-            pass
-
-rock_paper_scissors()
+if _name_ == "_main_":
+    main()
