@@ -25,9 +25,9 @@ while True:
     _, frame = cap.read()
 
     # Convert the frame to grayscale
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     FRAME_WINDOW.image(frame)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect hands in the frame
     hands = hand_cascade.detectMultiScale(gray, 1.1, 5)
