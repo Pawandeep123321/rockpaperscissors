@@ -6,7 +6,7 @@ import streamlit as st
 from camera_input_live import camera_input_live
 
 cap = camera_input_live()
-
+st.cap()
 
 # Load the cascade for hand gesture recognition
 hand_cascade = cv2.CascadeClassifier('hand.xml')
