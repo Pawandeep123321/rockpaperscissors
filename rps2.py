@@ -2,9 +2,9 @@ import streamlit as st
 import cv2
 import numpy as np
 import streamlit as st
-#from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer
 
-#webrtc_streamer(key="sample")
+webrtc_streamer(key="sample")
 
 
 
