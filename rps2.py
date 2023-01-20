@@ -17,16 +17,16 @@ choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 while True:
     class VideoProcessor:
-    def __init__(self) -> None:
-        self.threshold1 = 100
-        self.threshold2 = 200
+        def __init__(self) -> None:
+            self.threshold1 = 100
+            self.threshold2 = 200
 
-    def recv(self, frame):
-        img = frame.to_ndarray(format="bgr24")
+        def recv(self, frame):
+            img = frame.to_ndarray(format="bgr24")
 
-        img = cv2.cvtColor(cv2.Canny(img, self.threshold1, self.threshold2), cv2.COLOR_GRAY2BGR)
+            img = cv2.cvtColor(cv2.Canny(img, self.threshold1, self.threshold2), cv2.COLOR_GRAY2BGR)
 
-        return av.VideoFrame.from_ndarray(img, format="bgr24")
+            return av.VideoFrame.from_ndarray(img, format="bgr24")
 
     # Read a frame from the webcam
     #_, frame = cap.read()
