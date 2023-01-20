@@ -13,7 +13,7 @@ choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
 
-#cap = cv2.VideoCapture(0)
+img = cv2.VideoCapture(0)
 
 while True:
     class VideoProcessor:
