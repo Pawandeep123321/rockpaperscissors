@@ -12,12 +12,12 @@ hand_cascade = cv2.CascadeClassifier('hand.xml')
 choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
-#cap = cv2.VideoCapture(0)
 
-cap = st.camera_input("Take a picture")
+st.title("Webcam Live Feed")
+run = st.checkbox('Run')
+FRAME_WINDOW = st.image([])
+cap = cv2.VideoCapture(0)
 
-if cap:
-    st.image(cap)
 
 
 while True:
@@ -26,6 +26,8 @@ while True:
 
     # Convert the frame to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    FRAME_WINDOW.image(frame)
 
     # Detect hands in the frame
     hands = hand_cascade.detectMultiScale(gray, 1.1, 5)
