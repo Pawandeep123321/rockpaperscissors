@@ -1,59 +1,40 @@
 import streamlit as st
 import cv2
-import numpy as np
-import streamlit as st
 
-# Load the cascade for hand gesture recognition
-hand_cascade = cv2.CascadeClassifier('hand.xml')
+st.set_page_config(page_title="Rock-Paper-Scissors Game", page_icon=":guardsman:", layout="wide")
 
-# Define the choices for the game
-choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
+def rock_paper_scissors():
+    # Open the webcam
+    cap = cv2.VideoCapture(0)
 
-# Start the webcam
+    # Create a dictionary of possible hand gestures
+    choices = { 0: "Rock", 1: "Paper", 2: "Scissors" }
 
-cap = cv2.VideoCapture(0)
+    # Create a dictionary of the winning hand gestures
+    rules = { "Rock": "Scissors", "Paper": "Rock", "Scissors": "Paper" }
 
-while True:
+    while True:
+        _, frame = cap.read()
 
-    # Read a frame from the webcam
-    _, frame = cap.read()
+        # Show the webcam feed on the Streamlit app
+        st.image(frame, caption="Webcam Feed", use_column_width=True)
 
-    # Convert the frame to grayscale
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    # Detect hands in the frame
-    hands = hand_cascade.detectMultiScale(gray, 1.1, 5)
-
-    # Draw a rectangle around the hand
-    for (x, y, w, h) in hands:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
-
-    # Show the webcam feed
-    cv2.imshow('Webcam', frame)
-
-    # Check if the user has made a gesture
-    if len(hands) > 0:
         # Get the user's choice
-        choice = np.random.randint(0, 3)
+        choice = st.selectbox("Make your choice:", list(choices.values()))
 
-        # Print the user's choice
-        print(f'You chose {choices[choice]}')
+        # Get the computer's choice
+        computer_choice = choices[cv2.getNumberOfCPUs() % 3]
 
-        # Compare the user's choice to the computer's choice
-        computer_choice = np.random.randint(0, 3)
+        # Display the results
         if choice == computer_choice:
-            print("It's a tie!")
-        elif (choice == 0 and computer_choice == 2) or \
-             (choice == 1 and computer_choice == 0) or \
-             (choice == 2 and computer_choice == 1):
-            print('You win!')
+            st.write("It's a tie!")
+        elif rules[choice] == computer_choice:
+            st.write("You win!")
         else:
-            print('You lose!')
+            st.write("You lose!")
 
-    # Check if the user wants to quit
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        # Add a button to start the game again
+        if st.button("Play Again?"):
+            pass
 
-# Release the webcam and close the window
-cap.release()
-cv2.destroyAllWindows()
+rock_paper_scissors()
