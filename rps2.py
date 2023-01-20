@@ -3,10 +3,7 @@ import cv2
 import numpy as np
 import streamlit as st
 
-from camera_input_live import camera_input_live
 
-cap = camera_input_live()
-st.cap()
 
 # Load the cascade for hand gesture recognition
 hand_cascade = cv2.CascadeClassifier('hand.xml')
@@ -17,7 +14,11 @@ choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 # Start the webcam
 #cap = cv2.VideoCapture(0)
 
-#st.image(cap)
+cap = st.camera_input("Take a picture")
+
+if cap:
+    st.image(cap)
+
 
 while True:
     # Read a frame from the webcam
