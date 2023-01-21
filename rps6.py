@@ -8,11 +8,12 @@ hand_cascade = cv2.CascadeClassifier('hand.xml')
 choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
-cap = st.cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
+
 
 while True:
     # Read a frame from the webcam
-    _, frame = cap.read()
+    _, frame = st.cap.read()
 
     # Convert the frame to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
