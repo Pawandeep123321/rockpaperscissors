@@ -12,10 +12,10 @@ cap = st.camera_input("start playing")
 
 while True:
     # Read a frame from the webcam
-    #_, frame = cap.read()
+    _, frame = cap
 
     # Convert the frame to grayscale
-    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect hands in the frame
     hands = hand_cascade.detectMultiScale(1.1, 5)
