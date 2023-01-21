@@ -19,7 +19,7 @@ def generate_frames():
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-def play_game():
+def  play_game():
     # Open the webcam
     #cap = cv2.VideoCapture(0)
 
