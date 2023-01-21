@@ -8,7 +8,7 @@ hand_cascade = cv2.CascadeClassifier('hand.xml')
 choices = {0: 'rock', 1: 'paper', 2: 'scissors'}
 
 # Start the webcam
-cap = st.camera_input()
+cap = st.camera_input("start playing")
 
 while True:
     # Read a frame from the webcam
