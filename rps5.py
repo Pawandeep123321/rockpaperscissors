@@ -9,7 +9,7 @@ def generate_frames():
             # Read a frame from the webcam
             success, frame = cap.read()
             if not success:
-                break:
+                break
 
             else:
                 ret,buffer=cv2.imencode('.jpg',frame)
