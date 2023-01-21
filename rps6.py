@@ -12,7 +12,7 @@ cap = st.camera_input("start playing")
 
 while True:
     # Read a frame from the webcam
-    _, frame = cap.read()
+    #_, frame = cap.read()
 
     # Convert the frame to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
