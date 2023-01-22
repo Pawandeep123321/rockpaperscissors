@@ -1,4 +1,3 @@
-import cv2
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 import cv2
 import mediapipe as mp
