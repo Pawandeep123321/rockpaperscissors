@@ -72,4 +72,4 @@ def main():
             # Display the processed image
 # Release the webcam and close the window
         cv2.release()
-cv2.destroyAllWindows()
+ cv2.destroyAllWindows()
