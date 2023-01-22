@@ -71,5 +71,5 @@ def main():
 
             # Display the processed image
 # Release the webcam and close the window
-cap.release()
+cv2.release()
 cv2.destroyAllWindows()
