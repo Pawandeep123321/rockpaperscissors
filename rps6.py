@@ -47,8 +47,8 @@ if len(hands) > 0:
         print('You lose!')
 
 # Check if the user wants to quit
-if cv2.waitKey(1) & 0xFF == ord('q'):
-    break
+#if cv2.waitKey(1) & 0xFF == ord('q'):
+ #   break
 
 # Release the webcam and close the window
 cap.release()
